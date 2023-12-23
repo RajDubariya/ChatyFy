@@ -1,3 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* 
 body {
     color: white;
     background: #353535;
@@ -18,7 +24,7 @@ body {
     position: relative;
 }
 
-/* User Card */
+
 .user-card {
     color: white;
     position: relative;
@@ -52,7 +58,7 @@ body {
     z-index: 2;
 }
 
-/* Chat Box */
+
 .chat-box {
     max-height: calc(100vh - 10rem);
     overflow-y: auto;
@@ -64,7 +70,7 @@ body {
     height: 82vh;
 }
 
-/* Chat Header */
+
 .chat-header {
     display: flex;
     align-items: center;
@@ -74,7 +80,7 @@ body {
     background: rgb(30, 30, 30);
 }
 
-/* Messages */
+
 .messages {
     max-height: calc(100vh - 15rem);
     overflow-y: auto;
@@ -100,7 +106,7 @@ body {
     font-weight: 400;
 }
 
-/* Chat Input  */
+
 .chat-input {
     width: 100%;
     background: rgb(30, 30, 30);
@@ -119,7 +125,7 @@ body {
     border-radius: 50%;
 }
 
-/* Notification */
+
 .notifications {
     position: relative;
 }
@@ -208,4 +214,4 @@ body {
     border-radius: 50%;
     align-items: center;
     justify-content: center;
-}
+} */

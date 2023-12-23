@@ -1,33 +1,39 @@
+import { useContext } from "react";
+import { Navigate, Route, Routes } from "react-router-dom";
+import { ToastContainer, Zoom } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
-import "bootstrap/dist/css/bootstrap.min.css";
-import { Routes, Route, Navigate } from "react-router-dom";
-import Register from "./pages/Register";
+import NavBar from "./components/NavBar";
+import { AuthContext } from "./context/AuthContext";
 import Chat from "./pages/Chat";
 import Login from "./pages/Login";
-import { Container } from "react-bootstrap";
-import NavBar from "./components/NavBar";
-import { useContext } from "react";
-import { AuthContext } from "./context/AuthContext";
-import { ChatContextProvider } from "./context/ChatContext";
+import Register from "./pages/Register";
 
 function App() {
   const { user } = useContext(AuthContext);
   return (
     <>
-      <ChatContextProvider user={user}>
-        <NavBar />
-        <Container>
-          <Routes>
-            <Route path="/" element={user ? <Chat /> : <Login />} />
-            <Route path="/register" element={user ? <Chat /> : <Register />} />
-            <Route path="/login" element={user ? <Chat /> : <Login />} />
-            {/* <Route path="/" element={user ? <Chat /> : <Login />} />
-          <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} /> */}
-            <Route path="*" element={<Navigate to="/" />} />
-          </Routes>
-        </Container>
-      </ChatContextProvider>
+      <NavBar />
+      <Routes>
+        <Route path="/" element={user ? <Chat /> : <Login />} />
+        <Route path="/register" element={user ? <Chat /> : <Register />} />
+        <Route path="/login" element={user ? <Chat /> : <Login />} />
+        <Route path="*" element={<Navigate to="/" />} />
+      </Routes>
+
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={true}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition={Zoom}
+      />
     </>
   );
 }

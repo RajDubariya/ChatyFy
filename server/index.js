@@ -9,6 +9,7 @@ const app = express();
 const userRoute = require("./Routes/userRoute");
 const chatRoute = require("./Routes/chatRoute");
 const messageRoute = require("./Routes/messageRoute");
+const groupRoute = require("./Routes/groupRoute");
 
 const port = process.env.PORT || 8000;
 const uri = process.env.MONGODB_URI;
@@ -19,6 +20,7 @@ app.use(cors());
 app.use("/api/users", userRoute);
 app.use("/api/chat", chatRoute);
 app.use("/api/message", messageRoute);
+app.use("/api/chat/group", groupRoute);
 
 app.listen(port, () => {
   console.log(`listening to port ${port}`);

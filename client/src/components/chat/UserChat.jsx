@@ -1,6 +1,5 @@
-/* eslint-disable react/prop-types */
+import PropTypes from "prop-types";
 import moment from "moment";
-import { Stack } from "react-bootstrap";
 import { useFetchRecipient } from "../../hooks/useFetchRecipient";
 import avatar from "../../assets/avatar.png";
 import { useContext } from "react";
@@ -31,11 +30,8 @@ const UserChat = ({ chat, user }) => {
   };
   return (
     <>
-      <Stack
-        direction="horizontal"
-        gap={3}
-        className="user-card align-items-center p-2 justify-content-between"
-        role="button"
+      <div
+        className="bg-gray-50 border border-gray-200 rounded-xl cursor-pointer mb-2 p-2.5 relative"
         onClick={() => {
           if (thisUserNotifications?.length !== 0) {
             markThisUsersNotificationAsRead(
@@ -45,23 +41,25 @@ const UserChat = ({ chat, user }) => {
           }
         }}
       >
-        <div className="d-flex">
-          <div className="me-2">
-            <img src={avatar} height={40} />
+        <div className="flex capitalize">
+          <div className=" me-2">
+            <img src={avatar} className="w-10 " />
           </div>
-          <div className="text-center">
-            <div className="name">{recipientUser?.name}</div>
-            <div className="text">{truncateText(latestMessage?.text)}</div>
+          <div className=" text-sm">
+            <div>{recipientUser?.name}</div>
+            <div className=" text-xs">{truncateText(latestMessage?.text)}</div>
           </div>
         </div>
 
-        <div className="d-flex flex-column align-items-end">
-          <div className="date">
+        <div className="flex  items-center mt-1">
+          <div className="text-xs text-gray-400">
             {moment(latestMessage?.createdAt).calendar()}
           </div>
           <div
             className={
-              thisUserNotifications?.length > 0 ? `this-user-notifications` : ""
+              thisUserNotifications?.length > 0
+                ? ` bg-sky-300 text-white text-xs h-4 w-4 rounded-full flex justify-center items-center ml-auto`
+                : ""
             }
           >
             {thisUserNotifications?.length > 0
@@ -71,14 +69,19 @@ const UserChat = ({ chat, user }) => {
           <span
             className={
               onlineUsers?.some((user) => user?.userId === recipientUser?._id)
-                ? "user-online"
+                ? " bg-green-400 h-3 w-3 rounded-full absolute  top-[-4.5px] right-[-4.5px]"
                 : ""
             }
           ></span>
         </div>
-      </Stack>
+      </div>
     </>
   );
 };
 
 export default UserChat;
+
+UserChat.propTypes = {
+  chat: PropTypes.object.isRequired, // This specifies that handleButtonOnclick must be a function and is required.
+  user: PropTypes.object.isRequired, // You can adjust the type and required status as needed.
+};

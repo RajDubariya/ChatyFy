@@ -17,7 +17,7 @@ export const useFetchRecipient = (chat, user) => {
           `${baseUrl}/users/find/${recipientId}`
         );
 
-        if (response.error) {
+        if (response && response.error) {
           return setError(error);
         }
 

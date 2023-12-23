@@ -36,3 +36,25 @@ export const getRequest = async (url) => {
 
   return data;
 };
+
+export const patchRequest = async (url, body) => {
+  const response = await fetch(url, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body,
+  });
+  const data = await response.json();
+  if (!response.ok) {
+    let message;
+    if (data?.message) {
+      message = data.message;
+    } else {
+      message = data;
+    }
+    return { error: true, message };
+  }
+
+  return data;
+};
